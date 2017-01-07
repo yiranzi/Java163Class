@@ -1,7 +1,9 @@
 package c2;
 //开始1-7  
 //11点到11点15构思 
-//11点15
+//11点15到1点41
+//主要遇到的问题包括
+//不记得了
 import java.util.Scanner;
 class MyMath{
 	
