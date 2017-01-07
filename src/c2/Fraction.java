@@ -8,7 +8,7 @@ class MyMath{
 	int[] GongYueShu(int input){
 		int[] array = new int[input];
 		int count = 0;
-		for(int i=2;i<input;i++)
+		for(int i=2;i<=input;i++)
 		{
 			if(input%i == 0)
 			{
@@ -16,7 +16,9 @@ class MyMath{
 				count++;
 			}
 		}
-		array = new int[count];
+		//if(count != 0)array = new int[count];
+		//else array =null;
+		//折腾半天还是没办法有效缩减这个数组的长度.
 		return array;
 	}
 }
@@ -24,14 +26,11 @@ class MyMath{
 class Fraction {
 	private int iFenzi;
 	private int iFenmu;
-	MyMath fmath;
+	MyMath fmath = new MyMath();
 	int[] farray;
 	String sAnswer = "";
-	private Fraction fFraction = new Fraction();
-	Fraction(){
-		iFenzi = 1;
-		iFenmu = 1;
-	}
+	
+
 	Fraction(int a,int b){
 		iFenzi = a;
 		iFenmu = b;
@@ -44,46 +43,53 @@ class Fraction {
 	}
 	
 	Fraction plus(Fraction r){
+		Fraction fFraction = new Fraction(1,1);
 		fFraction.iFenmu = r.iFenmu * iFenmu;
 		fFraction.iFenzi = r.iFenzi * iFenmu + r.iFenmu * iFenzi;
-		return makeSimple();
+		return fFraction.makeSimple();//如果没有加名字的话,你看看前面两行为啥加了
 				
 	}
 	
 	Fraction multiply(Fraction r){
+		Fraction fFraction = new Fraction(1,1);
 		fFraction.iFenmu = r.iFenmu * iFenmu;
 		fFraction.iFenzi = r.iFenzi * iFenzi;
-		return makeSimple();
+		return fFraction.makeSimple();
 	}
 	
 	Fraction makeSimple(){
 		int lessNumber = iFenzi;
 		int moreNumber = iFenmu;
-		if(iFenzi == iFenmu)
-		{
-			iFenzi = iFenmu = 1;
-		}
-		else if(iFenzi > iFenmu)
+
+		if(iFenzi > iFenmu)
 		{
 			lessNumber = iFenmu;
 			moreNumber = iFenzi;
 		}
-		farray = fmath.GongYueShu(lessNumber);
-		if (farray.length!=0)
+		if(iFenzi == iFenmu)
 		{
-			for(int i=farray.length-1;i>=0;i--)
+			iFenzi = iFenmu = 1;
+		}
+		else
+		{
+			farray = fmath.GongYueShu(lessNumber);
+			if (farray !=null && farray.length!=0)
 			{
-				if(moreNumber%farray[i] == 0)
+				for(int i=farray.length-1;i>=0;i--)
 				{
-					iFenzi = iFenzi / farray[i];
-					iFenmu = iFenmu / farray[i];
-					break;
+					if(farray[i] !=0 && moreNumber%farray[i] == 0)//这边考虑不到位
+					{
+						iFenzi = iFenzi / farray[i];
+						iFenmu = iFenmu / farray[i];
+						break;
+					}
 				}
 			}
-		}
+		}	
 		return this;
 	}
 	void print(){
+		makeSimple();
 		if(iFenzi == iFenmu)sAnswer = "1";
 		else sAnswer = iFenzi + "/" + iFenmu;
 		System.out.println(sAnswer);
