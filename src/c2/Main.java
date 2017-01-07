@@ -6,6 +6,7 @@ package c2;
 */
 import java.util.Scanner;
 class WorkPrime {
+	//git vertion 2
 	boolean bIsPrime =true;
 	int iOri = 0;
 	boolean ZhengChu(int number)
