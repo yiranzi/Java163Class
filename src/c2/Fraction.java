@@ -5,27 +5,7 @@ package c2;
 //主要遇到的问题包括
 //不记得了
 import java.util.Scanner;
-class MyMath{
-	
-	int[] GongYueShu(int input){
-		int[] array = new int[input];
-		int count = 0;
-		for(int i=2;i<=input;i++)
-		{
-			if(input%i == 0)
-			{
-				array[count] = i;
-				count++;
-			}
-		}
-		//if(count != 0)array = new int[count];
-		//else array =null;
-		//折腾半天还是没办法有效缩减这个数组的长度.
-		return array;
-	}
-}
-
-class Fraction {
+public class Fraction {
 	private int iFenzi;
 	private int iFenmu;
 	MyMath fmath = new MyMath();
@@ -33,7 +13,7 @@ class Fraction {
 	String sAnswer = "";
 	
 
-	Fraction(int a,int b){
+	public Fraction(int a,int b){
 		iFenzi = a;
 		iFenmu = b;
 	}
@@ -111,4 +91,24 @@ class Fraction {
 		in.close();
 	}
 
+}
+
+class MyMath{
+	
+	int[] GongYueShu(int input){
+		int[] array = new int[input];
+		int count = 0;
+		for(int i=2;i<=input;i++)
+		{
+			if(input%i == 0)
+			{
+				array[count] = i;
+				count++;
+			}
+		}
+		//if(count != 0)array = new int[count];
+		//else array =null;
+		//折腾半天还是没办法有效缩减这个数组的长度.
+		return array;
+	}
 }
