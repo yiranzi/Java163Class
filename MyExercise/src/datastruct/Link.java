@@ -5,7 +5,6 @@ class Answer
 {
 	int iData =0;
 	boolean bAnswer = false;
-	Node nSave;
 }
 
 //链表
@@ -61,38 +60,14 @@ public class Link {
 		{
 			if(iNumber == nNow.nNext.iData)
 			{
-				aAnswer.iData = i;
-				aAnswer.nSave = nNow;
+				aAnswer.iData = nNow.nNext.iData;
 				aAnswer.bAnswer = true;				
 			}
 			nNow = nNow.nNext;
 		}
 		return aAnswer;
 	}
-	//位置查找.返回前置元素
-	public Answer FindPos( String sPos )
-	{
-		aAnswer.bAnswer =true;
-		int iPos = Integer.parseInt(sPos);
-		if(iPos>iLength || iPos<=0)
-		{
-			aAnswer.bAnswer = false;
-		}
-		Node nNow = nHead;
-		if(aAnswer.bAnswer)
-		{
-			for(int i=1;i<=iPos;i++)
-			{
-				if(i==iPos)
-				{
-					aAnswer.nSave = nNow;
-					aAnswer.iData = i;
-				}
-				nNow = nNow.nNext;
-			}
-		}
-		return aAnswer;
-	}
+	
 	//打印
 	public void LinkPrint()
 	{
@@ -106,36 +81,10 @@ public class Link {
 	}
 	
 	//删除
-	public boolean Delete(String sCount,int iNumber)
+	public Answer Delete(int iNumber)
 	{
-		if(sCount != "")
-		{
-			int iPos = Integer.parseInt(sCount);
-			{
-				aAnswer.bAnswer =true;
-				if(iPos>iLength || iPos<=0)
-				{
-					aAnswer.bAnswer = false;
-				}
-				Node nNow = nHead;
-				if(aAnswer.bAnswer)
-				{
-					for(int i=1;i<=iPos;i++)
-					{
-						if(i==iPos)
-						{
-							nNow.nNext = nNow.nNext.nNext;
-							iLength--;
-							break;
-						}
-						nNow = nNow.nNext;
-					}
-				}
-				return aAnswer.bAnswer;
-			}
-		}
-		//如果没有sCount 自动查找number
 		aAnswer.bAnswer =false;
+		aAnswer.iData = iNumber;
 		Node nNow = nHead;
 		for(int i=1;i<iLength+1;i++)
 		{
@@ -143,12 +92,12 @@ public class Link {
 			{
 				nNow.nNext = nNow.nNext.nNext;
 				iLength--;
-				aAnswer.bAnswer = true;
+				aAnswer.bAnswer = true;	
 				break;			
 			}
 			nNow = nNow.nNext;
 		}
-		return aAnswer.bAnswer;
+		return aAnswer;
 	}
 		
 	public void clear()
@@ -163,38 +112,33 @@ public class Link {
 		return iLength;
 	}
 	
-	public static void PrintAnswer(String sPos,int iNumber)
+	public static void Report(Answer bAnswer )
 	{
-		System.out.println("您需要位置" + sPos + "的.数值" + iNumber + 
-				"的.数值的查找结果为" + aAnswer.bAnswer + "他的位置是" + aAnswer.iData
-				+ "他的数值是" + aAnswer.nSave.nNext.iData);
+		if(aAnswer.bAnswer)
+		{
+			System.out.println("数值为" + aAnswer.iData);
+		}
+		else
+		{
+			System.out.println(aAnswer.iData +"是无效值");
+		}
 	}
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Link link1 = new Link();
-		//link1.AddHead(10);//我想添加一个节点
-		int iNumber = 30;
-		String sPos = "2";
+		boolean bAnswer = false;
 		link1.AddTail(20);
 		link1.AddTail(30);
 		link1.AddTail(40);
 		link1.AddTail(50);
-		link1.AddTail(60);
-
-		link1.FindPos(sPos);
-		PrintAnswer(sPos,iNumber);
-		link1.Delete(sPos,iNumber);
+		link1.AddTail(60);	
 		link1.LinkPrint();
-		System.out.println(link1.GetLength());
-		Link link2 = new Link();
-		//link1.AddHead(10);//我想添加一个节点
-		link2.AddTail(-20);
-		link2.AddTail(-30);
-		link2.AddTail(-40);
-		//link1.Find(10);
-		//link1.Delete(10);
-		link2.LinkPrint();
-		System.out.println(link2.GetLength());
+		Report(link1.Delete(20));
+		link1.LinkPrint();
+		Report(link1.FindValue(20));
+		link1 = null;
+		
 	}
 }
 
@@ -212,5 +156,4 @@ class Node{
 	{
 
 	}
-	
 }
