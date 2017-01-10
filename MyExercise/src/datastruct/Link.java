@@ -1,4 +1,20 @@
 package datastruct;
+//节点
+class Node{
+	int iData = 0;
+	Node nNext;
+	
+	Node(int iNumber)
+	{
+		iData = iNumber;
+		nNext = null;
+	}
+	
+	Node()
+	{
+
+	}
+}
 
 //一个类似结构体保存返回值的东西 设计的不太好
 class Answer
@@ -60,7 +76,7 @@ public class Link {
 		{
 			if(iNumber == nNow.nNext.iData)
 			{
-				aAnswer.iData = nNow.nNext.iData;
+				aAnswer.iData = i;
 				aAnswer.bAnswer = true;				
 			}
 			nNow = nNow.nNext;
@@ -127,33 +143,20 @@ public class Link {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Link link1 = new Link();
-		boolean bAnswer = false;
-		link1.AddTail(20);
-		link1.AddTail(30);
 		link1.AddTail(40);
+		link1.AddHead(30);
 		link1.AddTail(50);
+		link1.AddHead(20);
 		link1.AddTail(60);	
+		link1.AddHead(10);
 		link1.LinkPrint();
 		Report(link1.Delete(20));
 		link1.LinkPrint();
 		Report(link1.FindValue(20));
+		Report(link1.FindValue(10));
+		Report(link1.FindValue(60));
 		link1 = null;
-		
 	}
 }
 
-class Node{
-	int iData = 0;
-	Node nNext;
-	
-	Node(int iNumber)
-	{
-		iData = iNumber;
-		nNext = null;
-	}
-	
-	Node()
-	{
 
-	}
-}
