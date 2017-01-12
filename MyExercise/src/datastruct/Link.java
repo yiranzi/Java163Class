@@ -8,6 +8,23 @@ class Answer
 	Node nSave;
 }
 
+class Node{
+	int iData = 0;
+	Node nNext;
+	
+	Node(int iNumber)
+	{
+		iData = iNumber;
+		nNext = null;
+	}
+	
+	Node()
+	{
+
+	}
+	
+}
+
 //链表
 public class Link {
 	Node nHead;
@@ -46,6 +63,10 @@ public class Link {
 	//头部添加
 	public void AddHead(int iData)
 	{
+		if (!bInit)
+		{
+			AddTail(iData);
+		}
 		Node nNew = new Node(iData);
 		nNew.nNext = nHead.nNext;
 		nHead.nNext = nNew;
@@ -63,17 +84,18 @@ public class Link {
 			{
 				aAnswer.iData = i;
 				aAnswer.nSave = nNow;
-				aAnswer.bAnswer = true;				
+				aAnswer.bAnswer = true;		
+				break;
 			}
 			nNow = nNow.nNext;
 		}
 		return aAnswer;
 	}
 	//位置查找.返回前置元素
-	public Answer FindPos( String sPos )
+	public int FindPos( int iPos )
 	{
 		aAnswer.bAnswer =true;
-		int iPos = Integer.parseInt(sPos);
+		//int iPos = Integer.parseInt(sPos);
 		if(iPos>iLength || iPos<=0)
 		{
 			aAnswer.bAnswer = false;
@@ -87,12 +109,16 @@ public class Link {
 				{
 					aAnswer.nSave = nNow;
 					aAnswer.iData = i;
+					break;
 				}
 				nNow = nNow.nNext;
 			}
 		}
-		return aAnswer;
+		return nNow.nNext.iData;
+		
 	}
+	
+
 	//打印
 	public void LinkPrint()
 	{
@@ -105,24 +131,23 @@ public class Link {
 		
 	}
 	
-	//删除
-	public boolean Delete(String sCount,int iNumber)
+	//删除 传入（字符串位置 和 所需要的内容都可以）
+	public boolean Delete(int iCount,int iNumber)
 	{
-		if(sCount != "")
+		if(iCount >= 1)
 		{
-			int iPos = Integer.parseInt(sCount);
 			{
 				aAnswer.bAnswer =true;
-				if(iPos>iLength || iPos<=0)
+				if(iCount>iLength)
 				{
 					aAnswer.bAnswer = false;
 				}
 				Node nNow = nHead;
 				if(aAnswer.bAnswer)
 				{
-					for(int i=1;i<=iPos;i++)
+					for(int i=1;i<=iCount;i++)
 					{
-						if(i==iPos)
+						if(i==iCount)
 						{
 							nNow.nNext = nNow.nNext.nNext;
 							iLength--;
@@ -181,9 +206,9 @@ public class Link {
 		link1.AddTail(50);
 		link1.AddTail(60);
 
-		link1.FindPos(sPos);
+		
 		PrintAnswer(sPos,iNumber);
-		link1.Delete(sPos,iNumber);
+	
 		link1.LinkPrint();
 		System.out.println(link1.GetLength());
 		Link link2 = new Link();
@@ -198,19 +223,4 @@ public class Link {
 	}
 }
 
-class Node{
-	int iData = 0;
-	Node nNext;
-	
-	Node(int iNumber)
-	{
-		iData = iNumber;
-		nNext = null;
-	}
-	
-	Node()
-	{
 
-	}
-	
-}
