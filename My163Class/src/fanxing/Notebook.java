@@ -1,4 +1,4 @@
-package application;
+package fanxing;
 	
 public class Notebook {
 	//接口设计

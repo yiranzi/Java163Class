@@ -25,15 +25,16 @@ public class Mynotebook {
 	}
 	
 	//保存用户输入的接口
-	public boolean EnterData(String sInput)
+	public boolean add(String s)
 	{
-		int iInput = Integer.parseInt(sInput);
+		int iInput = Integer.parseInt(s);
 		link.AddTail(iInput);
 		iNow++;
 		return true;
 	}
 	
-	public boolean IsUse(int iInput)
+	//判断数据是否可用
+	private boolean IsUse(int iInput)
 	{
 		int iLength = GetLength();
 		if(iInput > iLength)

@@ -22,7 +22,7 @@ public class NoteBookUser {
 	{
 			System.out.println("条目为" + GetNumber() + "请输入");
 			sGetString = sIn.nextLine();
-			mNote.EnterData(sGetString);
+			mNote.add(sGetString);
 	}
 	
 	//查找
