@@ -1,5 +1,22 @@
 package datastruct;
+//节点
+class Node{
+	int iData = 0;
+	Node nNext;
+	
+	Node(int iNumber)
+	{
+		iData = iNumber;
+		nNext = null;
+	}
+	
+	Node()
+	{
 
+	}
+}
+
+<<<<<<< HEAD
 class Node{
 	int iData = 0;
 	Node nNext;
@@ -15,6 +32,13 @@ class Node{
 
 	}
 	
+=======
+//一个类似结构体保存返回值的东西 设计的不太好
+class Answer
+{
+	int iData =0;
+	boolean bAnswer = false;
+>>>>>>> 6f80335702d40b170b57f694314adcf544c3d103
 }
 
 //链表
@@ -70,20 +94,27 @@ public class Link {
 		for(int i=1;i<iLength+1;i++)
 		{
 			if(iNumber == nNow.nNext.iData)
+<<<<<<< HEAD
 			{	
 				break;
+=======
+			{
+				aAnswer.iData = i;
+				aAnswer.bAnswer = true;				
+>>>>>>> 6f80335702d40b170b57f694314adcf544c3d103
 			}
 			nNow = nNow.nNext;
 		}
 		return nNow;
 	}
+<<<<<<< HEAD
 	//位置查找.返回前置元素
 	public String FindPos( int iPos )
 	{
-		Node nNow = nHead;
 		String sAnswer = null;
 		if(iPos<=iLength && iPos>0)
 		{
+			Node nNow = nHead;
 			for(int i=1;i<=iPos;i++)
 			{
 				if(i==iPos)
@@ -99,6 +130,9 @@ public class Link {
 	}
 	
 
+=======
+	
+>>>>>>> 6f80335702d40b170b57f694314adcf544c3d103
 	//打印
 	public void LinkPrint()
 	{
@@ -111,6 +145,7 @@ public class Link {
 		
 	}
 	
+<<<<<<< HEAD
 	//删除 传入（字符串位置 和 所需要的内容都可以）
 	public String Delete(int iCount,int iNumber)
 	{
@@ -141,6 +176,13 @@ public class Link {
 			}
 		}
 		//如果没有sCount 自动查找number
+=======
+	//删除
+	public Answer Delete(int iNumber)
+	{
+		aAnswer.bAnswer =false;
+		aAnswer.iData = iNumber;
+>>>>>>> 6f80335702d40b170b57f694314adcf544c3d103
 		Node nNow = nHead;
 		for(int i=1;i<iLength+1;i++)
 		{
@@ -148,11 +190,19 @@ public class Link {
 			{
 				nNow.nNext = nNow.nNext.nNext;
 				iLength--;
+<<<<<<< HEAD
+=======
+				aAnswer.bAnswer = true;	
+>>>>>>> 6f80335702d40b170b57f694314adcf544c3d103
 				break;			
 			}
 			nNow = nNow.nNext;
 		}
+<<<<<<< HEAD
 		return "";
+=======
+		return aAnswer;
+>>>>>>> 6f80335702d40b170b57f694314adcf544c3d103
 	}
 		
 	public void clear()
@@ -166,17 +216,48 @@ public class Link {
 		return iLength;
 	}
 	
+<<<<<<< HEAD
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Link link1 = new Link();
+		link1.AddTail(20);
+		link1.AddTail(30);
+=======
+	public static void Report(Answer bAnswer )
+	{
+		if(aAnswer.bAnswer)
+		{
+			System.out.println("数值为" + aAnswer.iData);
+		}
+		else
+		{
+			System.out.println(aAnswer.iData +"是无效值");
+		}
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Link link1 = new Link();
+>>>>>>> 6f80335702d40b170b57f694314adcf544c3d103
 		link1.AddTail(40);
 		link1.AddHead(30);
 		link1.AddTail(50);
+<<<<<<< HEAD
+		link1.AddTail(60);	
+		link1.LinkPrint();
+=======
 		link1.AddHead(20);
 		link1.AddTail(60);	
 		link1.AddHead(10);
 		link1.LinkPrint();
+		Report(link1.Delete(20));
+		link1.LinkPrint();
+		Report(link1.FindValue(20));
+		Report(link1.FindValue(10));
+		Report(link1.FindValue(60));
+		link1 = null;
+>>>>>>> 6f80335702d40b170b57f694314adcf544c3d103
 	}
 }
 
-	
+
