@@ -1,11 +1,8 @@
 package jicheng.meitiku;
 
-public class Building {
-	int id;
-	String name;
-	int hp;
+public class Building extends Unit {
+	
 	int defence;
-	int number;//编号
 	public Building(int id,String name, int hp, int defence) {
 		this.id = id;
 		this.name = name;

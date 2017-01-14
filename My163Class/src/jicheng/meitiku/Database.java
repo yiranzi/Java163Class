@@ -4,67 +4,58 @@ import java.util.ArrayList;
 
 public class Database {
 	//声明的一个容器 装普通敌人
-	ArrayList<Enemy> a_enemy= new ArrayList<Enemy>();
-	ArrayList<Building>list_building = new ArrayList<Building>();
+	//ArrayList<Enemy> a_enemy= new ArrayList<Enemy>();
+	//ArrayList<Building>list_building = new ArrayList<Building>();
+	ArrayList<Unit> listUnit = new ArrayList<Unit>();
 	static String sStringToNumber[];
 	
 	//添加一个敌人单位 返回添加的位置
-	public void Add(Enemy enemy)
+	public void Add(Unit unit)
 	{
-		a_enemy.add(enemy);
+		listUnit.add(unit);
 		GetArray();
 	}
 	
-	//添加一个敌人单位 返回添加的位置
-	public void Add(Building building)
-	{
-		list_building.add(building);
-		GetArray();
-	}
 	
 	//返回容器长度
 	public int GetSize()
 	{
-		return a_enemy.size();
+		return listUnit.size();
 	}
 	
 	//打印敌人属性
-	public Enemy Get(String name)
+	public Unit Get(String name)
 	{
-		return a_enemy.get(Name(name));
+		return listUnit.get(Name(name));
 	}
 	
 	//删除一个敌人
-	public Enemy Delete(String name)
+	public Unit Delete(String name)
 	{	
-		Enemy e = a_enemy.remove(Name(name));
+		Unit e = listUnit.remove(Name(name));
 		GetArray();
 		return e;
 	}
 	
 	//替换一个敌人
-	public void Replace(String name,Enemy enemy2)
+	public void Replace(String name,Unit unit2)
 	{
 		int index = Name(name);
-		a_enemy.remove(index);
-		a_enemy.add(index, enemy2);
+		listUnit.remove(index);
+		listUnit.add(index, unit2);
 		GetArray();
 		
 	}
 	//打印所有的单位
-	public void Print(Enemy enemy)
+	public void Print(Unit unit)
 	{
-		int id = Name(enemy.name);
-		String enemyname = enemy.name;
-		int hp =enemy.hp;
-		int speed =enemy.speed;
-		int attack = enemy.attack;
+		int id = Name(unit.name);
+		String name = unit.name;
+		int hp =unit.hp;
 		System.out.println(
 				"编号:" + id +
-				"兵种名称是:" + enemyname +
-				"血量是:" + hp +
-				"移动速度是:" + speed +
-				"攻击力是:" + attack
+				"名称是:" + name +
+				"血量是:" + hp
 				);
 	}
 	
@@ -72,30 +63,22 @@ public class Database {
 	public void List()
 	{
 		System.out.println("____________");
-		Enemy enemy[] = new Enemy[this.GetSize()];
-		a_enemy.toArray(enemy);
-		for(Enemy e:enemy)
+		Unit unit[] = new Unit[this.GetSize()];
+		listUnit.toArray(unit);
+		for(Unit e:unit)
 		{
 			Print(e);
-
 		}
-
 	}
 	
 	//列出所有的单位
 	public void List2()
 	{
 		System.out.println("____________");
-		for(Enemy e:a_enemy)
+		for(Unit e:listUnit)
 		{
 			e.Print();
 		}
-		
-		for(Building b:list_building)
-		{
-			b.Print();
-		}
-
 	}
 		
 	//添加新元素
@@ -115,10 +98,10 @@ public class Database {
 	//返回一个键(存储序号)值(名称)对数组
 	public void GetArray()
 	{
-		sStringToNumber = new String[a_enemy.size()];
+		sStringToNumber = new String[listUnit.size()];
 		for (int i=0;i<sStringToNumber.length;i++)
 		{
-			sStringToNumber[i] = a_enemy.get(i).name;
+			sStringToNumber[i] = listUnit.get(i).name;
 		}
 	}
 	
@@ -131,72 +114,72 @@ public class Database {
 		int hp;
 		int speed;
 		int attack;	
-		Enemy enemy_0;
+		Unit unit_0;
 		//
 		//初始化 数值+new+add
 		name = "marine";
-		id =1;
+		id =11;
 		hp =50;
 		speed =10;
 		attack = 5;
-		enemy_0 = new Enemy(id,name,hp,speed,attack);
-		db.Add(enemy_0);
+		unit_0 = new Enemy(id,name,hp,speed,attack);
+		db.Add(unit_0);
 		//
 		name = "marine_super";
-		id = 2;
+		id = 22;
 		hp =500;
 		speed =15;
 		attack = 50;
-		enemy_0 = new Enemy(id,name,hp,speed,attack);
-		db.Add(enemy_0);
+		unit_0 = new Enemy(id,name,hp,speed,attack);
+		db.Add(unit_0);
 		//
 		
 		//
 		name = "bing3";
-		id =3;
+		id =33;
 		hp =3;
 		speed =3;
 		attack = 3;
-		enemy_0 = new Enemy(id,name,hp,speed,attack);
-		db.Add(enemy_0);
+		unit_0 = new Enemy(id,name,hp,speed,attack);
+		db.Add(unit_0);
 		//
 		
 		//
 		name = "bing4";
-		id =4;
+		id =44;
 		hp =3;
 		speed =3;
 		attack = 3;
-		enemy_0 = new Enemy(id,name,hp,speed,attack);
-		db.Add(enemy_0);
+		unit_0 = new Enemy(id,name,hp,speed,attack);
+		db.Add(unit_0);
 		//
 		//
 		name = "bing5";
-		id =5;
+		id =55;
 		hp =3;
 		speed =3;
 		attack = 3;
-		enemy_0 = new Enemy(id,name,hp,speed,attack);
+		unit_0 = new Enemy(id,name,hp,speed,attack);
+		db.Add(unit_0);
 		//
-		Building building_0;
 		int defence;
 		name = "bingying";
-		id =1;
+		id =101;
 		hp =3;
 		defence = 3;
-		building_0 = new Building(id,name,hp,defence);
-		db.Add(building_0);
+		unit_0 = new Building(id,name,hp,defence);
+		db.Add(unit_0);
 		//
 		name = "bingying2";
-		id =10;
+		id =102;
 		hp =3;
 		defence = 3;
-		building_0 = new Building(id,name,hp,defence);
-		db.Add(building_0);
+		unit_0 = new Building(id,name,hp,defence);
+		db.Add(unit_0);
 		//
 		db.List();
 		db.Delete("bing3");
-		db.Replace("bing4", enemy_0);
+		db.Replace("bing4", unit_0);
 		db.List2();
 	}
 }

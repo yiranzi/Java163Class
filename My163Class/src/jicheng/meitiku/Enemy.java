@@ -1,9 +1,7 @@
 package jicheng.meitiku;
 
-public class Enemy {
-	int id;
-	String name;
-	int hp;
+public class Enemy extends Unit{
+	
 	int speed;
 	int attack;
 
