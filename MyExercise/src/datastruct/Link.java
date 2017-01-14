@@ -83,7 +83,6 @@ public class Link {
 		String sAnswer = null;
 		if(iPos<=iLength && iPos>0)
 		{
-			Node nNow = nHead;
 			for(int i=1;i<=iPos;i++)
 			{
 				if(i==iPos)
@@ -169,13 +168,14 @@ public class Link {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Link link1 = new Link();
-		link1.AddTail(20);
-		link1.AddTail(30);
 		link1.AddTail(40);
+		link1.AddHead(30);
 		link1.AddTail(50);
+		link1.AddHead(20);
 		link1.AddTail(60);	
+		link1.AddHead(10);
 		link1.LinkPrint();
 	}
 }
 
-
+	
