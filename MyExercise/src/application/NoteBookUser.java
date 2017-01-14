@@ -12,15 +12,15 @@ public class NoteBookUser {
 		System.out.println("welcome my notebook");
 	}
 	//返回当前条目编号
-	public static int GetNumber()
+	private static int getNoteSize()
 	{
-		return mNote.GetNowNumber();
+		return mNote.getSize();
 	}
 	
 	//输入
 	public static void WantEnter()
 	{
-			System.out.println("条目为" + GetNumber() + "请输入");
+			System.out.println("条目为" + getNoteSize() + "请输入");
 			sGetString = sIn.nextLine();
 			mNote.add(sGetString);
 	}
@@ -33,11 +33,20 @@ public class NoteBookUser {
 		int iTo = sIn.nextInt();
 		for(int i = iFrom;i<=iTo;i++)
 		{
-			String sReturn = mNote.Output(i);
+			String sReturn = mNote.getNote(i);
 			System.out.println("第" + i +"条记录是" + sReturn);
 			
 		}
 		sGetString = sIn.nextLine();
+	}
+	
+	public static void WantList() {
+		// TODO Auto-generated method stub
+		String aString[] = mNote.list();
+		for(String s : aString)
+		{
+			System.out.println(s);
+		}
 	}
 	
 	//删除
@@ -46,7 +55,7 @@ public class NoteBookUser {
 		System.out.println("请输入要删除的内容");
 		int iInput = sIn.nextInt();
 		sGetString = sIn.nextLine();	
-		System.out.println("你要删除条目" + iInput +"他的内容是" + mNote.Output(iInput));
+		System.out.println("你要删除条目" + iInput +"他的内容是" + mNote.getNote(iInput));
 
 		System.out.println("确认按y");
 		
@@ -54,8 +63,7 @@ public class NoteBookUser {
 		if(sGetString.equals("y"))
 		{
 		
-			System.out.println("已经删除" + iInput +"他的内容是" + mNote.Output(iInput));
-			mNote.Delete(iInput);
+			System.out.println("已经删除" + iInput +"他的内容是" + mNote.removeNote(iInput));
 		}
 		else
 		{
@@ -69,7 +77,7 @@ public class NoteBookUser {
 		OUT:
 		while(true)
 		{
-			System.out.println("输入指令:e s d q");
+			System.out.println("输入指令:e s d l q");
 			sGetString = sIn.nextLine();
 			if(sGetString.equals(""))
 			{
@@ -85,6 +93,11 @@ public class NoteBookUser {
 				case "s":
 					WantSearch();
 					sSave = "s";
+					break;
+					
+				case "l":
+					WantList();
+					sSave = "l";
 					break;
 				case "d":
 					WantDelete();
@@ -102,6 +115,7 @@ public class NoteBookUser {
 		}
 
 	}
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		//用户看到的应用程序

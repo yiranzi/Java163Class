@@ -1,13 +1,5 @@
 package datastruct;
 
-//一个类似结构体保存返回值的东西 设计的不太好
-class Answer
-{
-	int iData =0;
-	boolean bAnswer = false;
-	Node nSave;
-}
-
 class Node{
 	int iData = 0;
 	Node nNext;
@@ -31,7 +23,6 @@ public class Link {
 	Node nTail;
 	int iLength;
 	boolean bInit;
-	static Answer aAnswer;
 	
 	//链表构造
 	public Link()
@@ -40,7 +31,6 @@ public class Link {
 		nHead = new Node();
 		iLength = 0;
 		bInit = false;
-		aAnswer = new Answer();
 	}
 	
 	//尾部添加
@@ -74,47 +64,37 @@ public class Link {
 	}
 	
 	//数值查找.返回前置元素
-	public Answer FindValue(int iNumber)
+	public Node FindValue(int iNumber)
 	{
-		aAnswer.bAnswer =false;
 		Node nNow = nHead;
 		for(int i=1;i<iLength+1;i++)
 		{
 			if(iNumber == nNow.nNext.iData)
-			{
-				aAnswer.iData = i;
-				aAnswer.nSave = nNow;
-				aAnswer.bAnswer = true;		
+			{	
 				break;
 			}
 			nNow = nNow.nNext;
 		}
-		return aAnswer;
+		return nNow;
 	}
 	//位置查找.返回前置元素
-	public int FindPos( int iPos )
+	public String FindPos( int iPos )
 	{
-		aAnswer.bAnswer =true;
-		//int iPos = Integer.parseInt(sPos);
-		if(iPos>iLength || iPos<=0)
+		String sAnswer = null;
+		if(iPos<=iLength && iPos>0)
 		{
-			aAnswer.bAnswer = false;
-		}
-		Node nNow = nHead;
-		if(aAnswer.bAnswer)
-		{
+			Node nNow = nHead;
 			for(int i=1;i<=iPos;i++)
 			{
 				if(i==iPos)
 				{
-					aAnswer.nSave = nNow;
-					aAnswer.iData = i;
+					sAnswer = String.valueOf(nNow.nNext.iData);
 					break;
 				}
 				nNow = nNow.nNext;
 			}
-		}
-		return nNow.nNext.iData;
+		}		
+		return sAnswer;
 		
 	}
 	
@@ -132,23 +112,24 @@ public class Link {
 	}
 	
 	//删除 传入（字符串位置 和 所需要的内容都可以）
-	public boolean Delete(int iCount,int iNumber)
+	public String Delete(int iCount,int iNumber)
 	{
+		String sAnswer = null;
 		if(iCount >= 1)
 		{
 			{
-				aAnswer.bAnswer =true;
-				if(iCount>iLength)
+				if(iCount<=iLength)
 				{
-					aAnswer.bAnswer = false;
+					sAnswer = "";
 				}
 				Node nNow = nHead;
-				if(aAnswer.bAnswer)
+				if(sAnswer!=null)
 				{
 					for(int i=1;i<=iCount;i++)
 					{
 						if(i==iCount)
 						{
+							sAnswer = String.valueOf(nNow.nNext.iData);
 							nNow.nNext = nNow.nNext.nNext;
 							iLength--;
 							break;
@@ -156,11 +137,10 @@ public class Link {
 						nNow = nNow.nNext;
 					}
 				}
-				return aAnswer.bAnswer;
+				return sAnswer;
 			}
 		}
 		//如果没有sCount 自动查找number
-		aAnswer.bAnswer =false;
 		Node nNow = nHead;
 		for(int i=1;i<iLength+1;i++)
 		{
@@ -168,19 +148,17 @@ public class Link {
 			{
 				nNow.nNext = nNow.nNext.nNext;
 				iLength--;
-				aAnswer.bAnswer = true;
 				break;			
 			}
 			nNow = nNow.nNext;
 		}
-		return aAnswer.bAnswer;
+		return "";
 	}
 		
 	public void clear()
 	{
 		this.nHead =null;
 		this.nTail =null;
-		aAnswer =null;
 	}
 	
 	public int GetLength()
@@ -188,38 +166,15 @@ public class Link {
 		return iLength;
 	}
 	
-	public static void PrintAnswer(String sPos,int iNumber)
-	{
-		System.out.println("您需要位置" + sPos + "的.数值" + iNumber + 
-				"的.数值的查找结果为" + aAnswer.bAnswer + "他的位置是" + aAnswer.iData
-				+ "他的数值是" + aAnswer.nSave.nNext.iData);
-	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Link link1 = new Link();
-		//link1.AddHead(10);//我想添加一个节点
-		int iNumber = 30;
-		String sPos = "2";
 		link1.AddTail(20);
 		link1.AddTail(30);
 		link1.AddTail(40);
 		link1.AddTail(50);
-		link1.AddTail(60);
-
-		
-		PrintAnswer(sPos,iNumber);
-	
+		link1.AddTail(60);	
 		link1.LinkPrint();
-		System.out.println(link1.GetLength());
-		Link link2 = new Link();
-		//link1.AddHead(10);//我想添加一个节点
-		link2.AddTail(-20);
-		link2.AddTail(-30);
-		link2.AddTail(-40);
-		//link1.Find(10);
-		//link1.Delete(10);
-		link2.LinkPrint();
-		System.out.println(link2.GetLength());
 	}
 }
 

@@ -3,5 +3,5 @@ package jicheng.meitiku;
 import java.util.ArrayList;
 
 public class Database {
-	ArrayList<CdClass> = new ArrayList<CdClass>();
+	ArrayList<String> CdClass= new ArrayList<String>();
 }
