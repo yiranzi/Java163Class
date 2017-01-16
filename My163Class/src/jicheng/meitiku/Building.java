@@ -2,11 +2,9 @@ package jicheng.meitiku;
 
 public class Building extends Unit {
 	
-	int defence;
+	int defence = 100;
 	public Building(int id,String name, int hp, int defence) {
-		this.id = id;
-		this.name = name;
-		this.hp = hp;
+		//super(id,name,hp);
 		this.defence = defence;
 	}
 	

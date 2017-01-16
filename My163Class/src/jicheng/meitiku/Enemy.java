@@ -6,16 +6,24 @@ public class Enemy extends Unit{
 	int attack;
 
 	public Enemy(int id,String name, int hp, int speed, int attack) {
-		this.id = id;
-		this.name = name;
-		this.hp = hp;
+		//super(name);
+		//super(id,name,hp);
+		//this.id = id;
+		//this.name = name;
+		//this.hp = hp;
+		//super(id,name,hp);
 		this.speed = speed;
 		this.attack = attack;
 	}
+//	
+//	public Enemy(int attack)
+//	{
+//		this.attack = attack;
+//	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub	
+		Enemy e = new Enemy(666,"sun",10,5,3);
 	}
 
 	public void Print() {
