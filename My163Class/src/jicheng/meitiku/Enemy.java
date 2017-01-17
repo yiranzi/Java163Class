@@ -6,12 +6,7 @@ public class Enemy extends Unit{
 	int attack;
 
 	public Enemy(int id,String name, int hp, int speed, int attack) {
-		//super(name);
-		//super(id,name,hp);
-		//this.id = id;
-		//this.name = name;
-		//this.hp = hp;
-		//super(id,name,hp);
+		super(id,name,hp);
 		this.speed = speed;
 		this.attack = attack;
 	}
@@ -28,13 +23,16 @@ public class Enemy extends Unit{
 
 	public void Print() {
 		// TODO Auto-generated method stub
+		super.Print();
 		System.out.println(
-				"编号:" + id +
-				"兵种名称是:" + name +
-				"血量是:" + hp +
 				"移动速度是:" + speed +
 				"攻击力是:" + attack
 				);
+	}
+
+	public void MakeSkill() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
